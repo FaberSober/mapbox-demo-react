@@ -59,6 +59,10 @@ export default function App() {
       </div>
       <div>
         <span>GeoJSON: </span>
+        <Link to="/mapbox/GeoJSON/Point">Point</Link>
+        <Divider type="vertical" />
+        <Link to="/mapbox/GeoJSON/Points">Points</Link>
+        <Divider type="vertical" />
         <Link to="/mapbox/GeoJSON/LineString">LineString</Link>
       </div>
 
