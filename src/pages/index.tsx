@@ -8,7 +8,7 @@ import zhCN from 'antd/es/locale/zh_CN';
 
 
 // vite - get .env parameter
-console.log('import.meta.env', import.meta.env)
+// console.log('import.meta.env', import.meta.env)
 
 export default function App() {
   const [theme, setTheme] = useState('default')

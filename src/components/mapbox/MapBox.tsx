@@ -13,16 +13,12 @@ export interface MapBoxProps {
   mapBoxOptions?: any;
 }
 
-let init = false;
 export default function MapBox({ mapId = 'map', children, center, mapBoxOptions }: MapBoxProps) {
   const mapRef = useRef<mapboxgl.Map>()
   const [inited, setInited] = useState(false)
   const [styleLoaded, setStyleLoaded] = useState(false)
 
   useEffect(() => {
-    if (init) return;
-    init = true;
-
     if (inited || styleLoaded) return;
     setInited(true)
 

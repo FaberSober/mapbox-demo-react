@@ -30,11 +30,9 @@ function App() {
 const app = createRoot(document.getElementById('root')!)
 
 app.render(
-  <StrictMode>
-    <Router>
-      <ConfigProvider locale={zhCN}>
-        <App />
-      </ConfigProvider>
-    </Router>
-  </StrictMode>,
+  <Router>
+    <ConfigProvider locale={zhCN}>
+      <App />
+    </ConfigProvider>
+  </Router>,
 )
