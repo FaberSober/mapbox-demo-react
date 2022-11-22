@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
 import MapBoxContext, { MapBoxContextProps } from './context/MapBoxContext'
@@ -11,9 +11,10 @@ export interface MapBoxProps {
   children?: any;
   options?: any;
   onReady?: (map: mapboxgl.Map) => void;
+  style?: CSSProperties;
 }
 
-export default function MapBox({ mapId = 'map', children, options, onReady }: MapBoxProps) {
+export default function MapBox({ mapId = 'map', children, options, onReady, style }: MapBoxProps) {
   const mapRef = useRef<mapboxgl.Map>()
   const [inited, setInited] = useState(false)
   const [styleLoaded, setStyleLoaded] = useState(false)
@@ -52,7 +53,7 @@ export default function MapBox({ mapId = 'map', children, options, onReady }: Ma
 
   return (
     <MapBoxContext.Provider value={contextValue}>
-      <div id="map" style={{ width: '100%', height: '100%', overflow: 'hidden' }} />
+      <div id="map" style={{ width: '100%', minHeight: 400, height: '100%', overflow: 'hidden', ...style }} />
 
       {mapRef.current && <>{children}</>}
     </MapBoxContext.Provider>

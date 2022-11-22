@@ -5,6 +5,7 @@ import { FeatureCollection } from "geojson";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import ReactJson from 'react-json-view'
 import GeocoderWithCood from "@/components/mapbox/plugins/GeocoderWithCood";
+import CursorPointShow from "@/components/mapbox/plugins/CursorPointShow";
 
 
 /**
@@ -43,12 +44,21 @@ export default function all() {
         <h2>draw all</h2>
 
         <div style={{ flex: 1 }}>
-          <MapBox mapId="map">
+          <MapBox
+            mapId="map"
+            options={{
+              style: 'mapbox://styles/mapbox/satellite-v9',
+              projection: 'naturalEarth', // starting projection
+              center: [94.921150,42.084420],
+              zoom: 16,
+            }}
+          >
             <GeocoderWithCood />
             <DrawTool
               onReady={handleReady}
               onChange={handleChange}
             />
+            <CursorPointShow />
           </MapBox>
         </div>
       </div>
