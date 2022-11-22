@@ -50,6 +50,8 @@ export default function App() {
         <Link to="/mapbox/base/streets">streets</Link>
         <Divider type="vertical" />
         <Link to="/mapbox/base/satellite">satellite</Link>
+        <Divider type="vertical" />
+        <Link to="/mapbox/base/geocoder">geocoder</Link>
       </div>
       <div>
         <span>Draw: </span>

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState} from "react";
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css'
 import MapBoxContext, { MapBoxContextProps } from './context/MapBoxContext'
 
 mapboxgl.accessToken = import.meta.env.VITE_APP_MAPBOX_TOKEN
@@ -12,12 +13,16 @@ export interface MapBoxProps {
   mapBoxOptions?: any;
 }
 
+let init = false;
 export default function MapBox({ mapId = 'map', children, center, mapBoxOptions }: MapBoxProps) {
   const mapRef = useRef<mapboxgl.Map>()
   const [inited, setInited] = useState(false)
   const [styleLoaded, setStyleLoaded] = useState(false)
 
   useEffect(() => {
+    if (init) return;
+    init = true;
+
     if (inited || styleLoaded) return;
     setInited(true)
 
@@ -41,6 +46,7 @@ export default function MapBox({ mapId = 'map', children, center, mapBoxOptions 
   }, [])
 
   const contextValue: MapBoxContextProps = {
+    accessToken: mapboxgl.accessToken,
     map: mapRef.current!,
     styleLoaded,
   }
