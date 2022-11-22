@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
-import {Button, ConfigProvider, DatePicker, Radio} from 'antd';
+import { Button, ConfigProvider, DatePicker, Divider, Radio } from 'antd';
 import {HeartOutlined} from "@ant-design/icons";
 import dayjs from 'dayjs';
 import enUS from 'antd/locale/en_US';
@@ -46,7 +46,14 @@ export default function App() {
   return (
     <div>
       <div>
-        <Link to="/mapbox/demo01">demo01</Link>
+        <span>Base: </span>
+        <Link to="/mapbox/base/streets">streets</Link>
+        <Divider type="vertical" />
+        <Link to="/mapbox/base/satellite">satellite</Link>
+      </div>
+      <div>
+        <span>Draw: </span>
+        <Link to="/mapbox/streets">streets</Link>
       </div>
 
       <div style={{ marginTop: 12 }}>

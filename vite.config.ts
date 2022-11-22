@@ -56,7 +56,7 @@ export default defineConfig(({ command, mode }) => {
       //       // 修改antd主题色
       //       'primary-color': '#1890FF',
       //       'link-color': '#1890FF',
-      //       'border-radius-base': '2px',
+      //       'border-radius-streets': '2px',
       //     },
       //   },
       // },
