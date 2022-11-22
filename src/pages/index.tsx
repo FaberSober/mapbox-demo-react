@@ -34,6 +34,8 @@ export default function App() {
 
       <div>
         <span>Draw: </span>
+        <Link to="/mapbox/draw/all">all</Link>
+        <Divider type="vertical" />
         <Link to="/mapbox/draw/point">point</Link>
         <Divider type="vertical" />
         <Link to="/mapbox/draw/lineString">lineString</Link>

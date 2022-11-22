@@ -10,13 +10,14 @@ type eventType = 'draw.create'|'draw.update'|'draw.delete'
 export interface DrawToolProps {
   options?: MapboxDraw.MapboxDrawOptions;
   onChange?: (et: eventType, selected: FeatureCollection, all: FeatureCollection) => void;
+  onReady?: (draw: MapboxDraw) => void;
 }
 
 /**
  * @author xu.pengfei
  * @date 2022/11/22
  */
-export default function DrawTool({ options, onChange }: DrawToolProps) {
+export default function DrawTool({ options, onChange, onReady }: DrawToolProps) {
   const { map, styleLoaded } = useContext(MapBoxContext)
 
   useEffect(() => {
@@ -42,10 +43,14 @@ export default function DrawTool({ options, onChange }: DrawToolProps) {
     function updateArea(e) {
       const selected = draw.getSelected();
       const data = draw.getAll();
-      console.log('updateArea', e, selected, data)
+      // console.log('updateArea', e, selected, data)
       if (onChange) {
         onChange(e.type, selected, data)
       }
+    }
+
+    if (onReady) {
+      onReady(draw)
     }
 
     return () => { map.removeControl(draw) }
