@@ -6,6 +6,10 @@ import dayjs from 'dayjs';
 import enUS from 'antd/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 
+
+// vite - get .env parameter
+console.log('import.meta.env', import.meta.env)
+
 export default function App() {
   const [theme, setTheme] = useState('default')
   const [local, setLocal] = useState('enUS');
@@ -17,11 +21,11 @@ export default function App() {
   function changeTheme(v:string) {
     setTheme(v)
 
-    ConfigProvider.config({
-      theme: {
-        primaryColor: v === 'default' ? '#1890FF' : '#25b864',
-      },
-    });
+    // ConfigProvider.config({
+    //   theme: {
+    //     primaryColor: v === 'default' ? '#1890FF' : '#25b864',
+    //   },
+    // });
   }
 
   function changeLocal(v:string) {
@@ -42,14 +46,9 @@ export default function App() {
   return (
     <div>
       <div>
-        <p>index.tsx</p>
-        <Link to="/blog">
-          blog
-        </Link> |
-        <Link to="/xxx">
-          not exists
-        </Link>
+        <Link to="/mapbox/demo01">demo01</Link>
       </div>
+
       <div style={{ marginTop: 12 }}>
         <Radio.Group
           options={[
