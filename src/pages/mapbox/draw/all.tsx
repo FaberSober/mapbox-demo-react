@@ -4,6 +4,7 @@ import DrawTool from "@/components/mapbox/plugins/DrawTool";
 import { FeatureCollection } from "geojson";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import ReactJson from 'react-json-view'
+import GeocoderWithCood from "@/components/mapbox/plugins/GeocoderWithCood";
 
 
 /**
@@ -43,6 +44,7 @@ export default function all() {
 
         <div style={{ flex: 1 }}>
           <MapBox mapId="map">
+            <GeocoderWithCood />
             <DrawTool
               onReady={handleReady}
               onChange={handleChange}
