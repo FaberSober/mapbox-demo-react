@@ -53,11 +53,13 @@ export default function App() {
         <Divider type="vertical" />
         <Link to="/mapbox/base/geocoder">geocoder</Link>
         <Divider type="vertical" />
+        <Link to="/mapbox/base/geocoderWithCood">geocoderWithCood</Link>
+        <Divider type="vertical" />
         <Link to="/mapbox/base/cursorPoint">cursorPoint</Link>
       </div>
       <div>
-        <span>Draw: </span>
-        <Link to="/mapbox/dot">dot</Link>
+        <span>GeoJSON: </span>
+        <Link to="/mapbox/GeoJSON/LineString">LineString</Link>
       </div>
 
       <div style={{ marginTop: 12 }}>

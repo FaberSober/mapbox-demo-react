@@ -11,11 +11,7 @@ export default function streets() {
       <div style={{ width: '100%', height: '100%', position: 'relative' }}>
         <h2>streets</h2>
 
-        <div id="map" style={{ width: '100%', height: 600, overflow: 'hidden' }} />
-
-        <MapBox mapId="map">
-        </MapBox>
-
+        <MapBox mapId="map" />
       </div>
     </div>
   )

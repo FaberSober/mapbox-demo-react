@@ -11,9 +11,10 @@ export interface MapBoxProps {
   children?: any;
   center?: [number, number];
   mapBoxOptions?: any;
+  onReady?: (map: mapboxgl.Map) => void;
 }
 
-export default function MapBox({ mapId = 'map', children, center, mapBoxOptions }: MapBoxProps) {
+export default function MapBox({ mapId = 'map', children, center, mapBoxOptions, onReady }: MapBoxProps) {
   const mapRef = useRef<mapboxgl.Map>()
   const [inited, setInited] = useState(false)
   const [styleLoaded, setStyleLoaded] = useState(false)
@@ -38,6 +39,9 @@ export default function MapBox({ mapId = 'map', children, center, mapBoxOptions 
       console.log('style.load')
       setStyleLoaded(true)
       // map.addLayer(customLayer);
+      if (onReady) {
+        onReady(map)
+      }
     });
   }, [])
 
@@ -49,6 +53,8 @@ export default function MapBox({ mapId = 'map', children, center, mapBoxOptions 
 
   return (
     <MapBoxContext.Provider value={contextValue}>
+      <div id="map" style={{ width: '100%', height: 600, overflow: 'hidden' }} />
+
       {mapRef.current && <>{children}</>}
     </MapBoxContext.Provider>
   )

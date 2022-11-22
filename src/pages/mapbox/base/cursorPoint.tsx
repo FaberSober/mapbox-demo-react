@@ -12,8 +12,6 @@ export default function geocoder() {
       <div style={{ width: '100%', height: '100%', position: 'relative' }}>
         <h2>CursorPointShow</h2>
 
-        <div id="map" style={{ width: '100%', height: 600, overflow: 'hidden' }} />
-
         <MapBox mapId="map">
           <CursorPointShow />
         </MapBox>

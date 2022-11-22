@@ -1,6 +1,6 @@
 import React from 'react';
 import MapBox from "@/components/mapbox/MapBox";
-import Geocoder from "@/components/mapbox/plugins/Geocoder";
+import GeocoderWithCood from "@/components/mapbox/plugins/GeocoderWithCood";
 
 /**
  * @author xu.pengfei
@@ -10,10 +10,10 @@ export default function geocoderWithCood() {
   return (
     <div>
       <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-        <h2>geocoder</h2>
+        <h2>geocoder with coordinates</h2>
 
         <MapBox mapId="map">
-          <Geocoder />
+          <GeocoderWithCood />
         </MapBox>
 
       </div>
