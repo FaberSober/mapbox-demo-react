@@ -52,10 +52,12 @@ export default function App() {
         <Link to="/mapbox/base/satellite">satellite</Link>
         <Divider type="vertical" />
         <Link to="/mapbox/base/geocoder">geocoder</Link>
+        <Divider type="vertical" />
+        <Link to="/mapbox/base/cursorPoint">cursorPoint</Link>
       </div>
       <div>
         <span>Draw: </span>
-        <Link to="/mapbox/streets">streets</Link>
+        <Link to="/mapbox/dot">dot</Link>
       </div>
 
       <div style={{ marginTop: 12 }}>
