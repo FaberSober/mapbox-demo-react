@@ -9,12 +9,11 @@ mapboxgl.accessToken = import.meta.env.VITE_APP_MAPBOX_TOKEN
 export interface MapBoxProps {
   mapId: string,
   children?: any;
-  center?: [number, number];
-  mapBoxOptions?: any;
+  options?: any;
   onReady?: (map: mapboxgl.Map) => void;
 }
 
-export default function MapBox({ mapId = 'map', children, center, mapBoxOptions, onReady }: MapBoxProps) {
+export default function MapBox({ mapId = 'map', children, options, onReady }: MapBoxProps) {
   const mapRef = useRef<mapboxgl.Map>()
   const [inited, setInited] = useState(false)
   const [styleLoaded, setStyleLoaded] = useState(false)
@@ -30,7 +29,7 @@ export default function MapBox({ mapId = 'map', children, center, mapBoxOptions,
       center: [0, 0],
       zoom: 0.4, // starting zoom
       // projection: 'naturalEarth', // starting projection
-      ...mapBoxOptions,
+      ...options,
     });
 
     mapRef.current = map;
