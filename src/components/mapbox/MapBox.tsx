@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef, useState} from "react";
-import mapboxgl, {MapboxOptions} from 'mapbox-gl';
+import React, { useEffect, useRef, useState} from "react";
+import mapboxgl from 'mapbox-gl';
 import MapBoxContext, { MapBoxContextProps } from './context/MapBoxContext'
 
 mapboxgl.accessToken = import.meta.env.VITE_APP_MAPBOX_TOKEN
