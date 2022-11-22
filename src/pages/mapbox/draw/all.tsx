@@ -3,6 +3,8 @@ import MapBox from "@/components/mapbox/MapBox";
 import DrawTool from "@/components/mapbox/plugins/DrawTool";
 import { FeatureCollection } from "geojson";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
+import ReactJson from 'react-json-view'
+
 
 /**
  * @author xu.pengfei
@@ -20,6 +22,7 @@ export default function all() {
       const store = localStorage.getItem('draw.all')
       if (store) {
         const feature =JSON.parse(store)
+        setAll(feature)
         const featureIds = d.add(feature);
         console.log(featureIds)
       }
@@ -34,16 +37,22 @@ export default function all() {
   }
 
   return (
-    <div>
-      <div style={{width: '100%', height: '100%', position: 'relative'}}>
+    <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
+      <div style={{ flex: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
         <h2>draw all</h2>
 
-        <MapBox mapId="map">
-          <DrawTool
-            onReady={handleReady}
-            onChange={handleChange}
-          />
-        </MapBox>
+        <div style={{ flex: 1 }}>
+          <MapBox mapId="map">
+            <DrawTool
+              onReady={handleReady}
+              onChange={handleChange}
+            />
+          </MapBox>
+        </div>
+      </div>
+
+      <div style={{ flex: 1, height: '100%', overflow: 'auto' }}>
+        <ReactJson src={all} style={{ height: '100%' }} />
       </div>
     </div>
   )

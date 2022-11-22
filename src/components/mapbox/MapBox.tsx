@@ -52,7 +52,7 @@ export default function MapBox({ mapId = 'map', children, options, onReady }: Ma
 
   return (
     <MapBoxContext.Provider value={contextValue}>
-      <div id="map" style={{ width: '100%', height: 600, overflow: 'hidden' }} />
+      <div id="map" style={{ width: '100%', height: '100%', overflow: 'hidden' }} />
 
       {mapRef.current && <>{children}</>}
     </MapBoxContext.Provider>
