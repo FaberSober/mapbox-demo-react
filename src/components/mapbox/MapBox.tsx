@@ -25,9 +25,9 @@ export default function MapBox({ mapId = 'map', children, center, mapBoxOptions 
     const map = new mapboxgl.Map({
       container: mapId, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
-      // style: 'mapbox://styles/mapbox/satellite-v9', // satellite
-      // center: [94.92115080,42.08442093], // starting position [lng, lat]
-      zoom: 1, // starting zoom
+      center: [0, 0],
+      zoom: 0.4, // starting zoom
+      // projection: 'naturalEarth', // starting projection
       ...mapBoxOptions,
     });
 

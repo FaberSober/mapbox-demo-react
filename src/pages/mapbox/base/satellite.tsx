@@ -13,7 +13,13 @@ export default function Satellite() {
 
         <div id="map" style={{ width: '100%', height: 600, overflow: 'hidden' }} />
 
-        <MapBox mapId="map" mapBoxOptions={{ style: 'mapbox://styles/mapbox/satellite-v9' }}>
+        <MapBox
+          mapId="map"
+          mapBoxOptions={{
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            projection: 'naturalEarth', // starting projection
+          }}
+        >
         </MapBox>
 
       </div>
