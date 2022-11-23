@@ -6,6 +6,7 @@ import ReactJson from 'react-json-view'
 import GeocoderWithCood from "@/components/mapbox/plugins/GeocoderWithCood";
 import CursorPointShow from "@/components/mapbox/plugins/CursorPointShow";
 import DrawPathTool from "@/components/mapbox/plugins/DrawPathTool";
+import { Button, Space } from "antd";
 
 
 /**
@@ -41,7 +42,12 @@ export default function roads() {
   return (
     <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
       <div style={{ flex: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <h2>draw roads</h2>
+        <div>
+          <h2>draw roads</h2>
+          <Space>
+            <Button onClick={() => localStorage.removeItem('draw.roads')}>Clear Storage</Button>
+          </Space>
+        </div>
 
         <div style={{ flex: 1 }}>
           <MapBox
