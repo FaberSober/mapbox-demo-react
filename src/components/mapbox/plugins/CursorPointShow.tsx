@@ -17,6 +17,7 @@ export default function CursorPointShow({ clickCopy, style }: CursorPointShowPro
   const { map, styleLoaded } = useContext(MapBoxContext)
 
   const [data, setData] = useState<string>('')
+  const [msg, setMsg] = useState<string>('')
 
   useEffect(() => {
     if (map === undefined || !styleLoaded) return
@@ -29,13 +30,17 @@ export default function CursorPointShow({ clickCopy, style }: CursorPointShowPro
     map.on('click', function (event) {
       if (clickCopy) {
         handleClipboard(`${event.lngLat.lng},${event.lngLat.lat}`)
+        setMsg('Copied')
+        setTimeout(() => {
+          setMsg('')
+        }, 3000)
       }
     })
   }, [styleLoaded])
 
   return (
     <div style={{ position: 'absolute', left: 12, bottom: 30, color: '#FFF', backgroundColor: '#00000033', ...style }}>
-      坐标：{data}
+      坐标：{data} {msg}
     </div>
   )
 }
