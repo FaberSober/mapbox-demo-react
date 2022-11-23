@@ -1,8 +1,10 @@
 import React, {CSSProperties, useContext, useEffect, useState} from 'react';
 import MapBoxContext from "@/components/mapbox/context/MapBoxContext";
+import { handleClipboard } from "@/utils/utils";
 
 
 export interface CursorPointShowProps {
+  clickCopy?: boolean; // click to copy the coordinates
   style?: CSSProperties;
 }
 
@@ -11,7 +13,7 @@ export interface CursorPointShowProps {
  * @author xu.pengfei
  * @date 2021/12/30 15:39
  */
-export default function CursorPointShow({ style }: CursorPointShowProps) {
+export default function CursorPointShow({ clickCopy, style }: CursorPointShowProps) {
   const { map, styleLoaded } = useContext(MapBoxContext)
 
   const [data, setData] = useState<string>('')
@@ -23,6 +25,11 @@ export default function CursorPointShow({ style }: CursorPointShowProps) {
     map.on('mousemove', function (event) {
       console.log('mousemove', event)
       setData(`${event.lngLat.lng}, ${event.lngLat.lat}`)
+    })
+    map.on('click', function (event) {
+      if (clickCopy) {
+        handleClipboard(`${event.lngLat.lng},${event.lngLat.lat}`)
+      }
     })
   }, [styleLoaded])
 

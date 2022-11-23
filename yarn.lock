@@ -1868,6 +1868,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/lodash@^4.14.189":
+  version "4.14.189"
+  resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.189.tgz#975ff8c38da5ae58b751127b19ad5e44b5b7f6d2"
+  integrity sha512-kb9/98N6X8gyME9Cf7YaqIMvYGnBSWqEci6tiettE6iJWH1XdJz/PO8LB0GtLCG7x8dU3KWhZT+lA1a35127tA==
+
 "@types/mapbox-gl@*", "@types/mapbox-gl@^2.7.8":
   version "2.7.8"
   resolved "https://registry.npmmirror.com/@types/mapbox-gl/-/mapbox-gl-2.7.8.tgz#7294ce0bd6a80997fc258ff981386b06e659a858"

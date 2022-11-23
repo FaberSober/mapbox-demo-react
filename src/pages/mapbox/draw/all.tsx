@@ -58,7 +58,7 @@ export default function all() {
               onReady={handleReady}
               onChange={handleChange}
             />
-            <CursorPointShow />
+            <CursorPointShow clickCopy />
           </MapBox>
         </div>
       </div>
