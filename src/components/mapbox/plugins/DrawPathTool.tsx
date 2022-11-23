@@ -7,17 +7,18 @@ import { FeatureCollection } from "geojson";
 
 type eventType = 'draw.create'|'draw.update'|'draw.delete'
 
-export interface DrawToolProps {
+export interface DrawPathToolProps {
   options?: MapboxDraw.MapboxDrawOptions;
   onChange?: (et: eventType, selected: FeatureCollection, all: FeatureCollection) => void;
   onReady?: (draw: MapboxDraw) => void;
+  delta?: number; // distance of points less then delta, will draw as the same point
 }
 
 /**
  * @author xu.pengfei
  * @date 2022/11/22
  */
-export default function DrawTool({ options, onChange, onReady }: DrawToolProps) {
+export default function DrawPathTool({ options, onChange, onReady }: DrawPathToolProps) {
   const { map, styleLoaded } = useContext(MapBoxContext)
 
   useEffect(() => {
@@ -27,10 +28,12 @@ export default function DrawTool({ options, onChange, onReady }: DrawToolProps) 
     const draw = new MapboxDraw({
       displayControlsDefault: true,
       controls: {
-        point: true,
+        point: false,
         line_string: true,
-        polygon: true,
-        trash: true
+        polygon: false,
+        trash: true,
+        combine_features: false,
+        uncombine_features: false,
       },
       ...options,
     });

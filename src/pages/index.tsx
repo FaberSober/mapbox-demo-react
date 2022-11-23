@@ -42,6 +42,7 @@ export default function App() {
         <Divider type="vertical" />
         <Link to="/mapbox/draw/polygon">polygon</Link>
         <Divider type="vertical" />
+        <Link to="/mapbox/draw/roads">roads</Link>
       </div>
 
     </div>

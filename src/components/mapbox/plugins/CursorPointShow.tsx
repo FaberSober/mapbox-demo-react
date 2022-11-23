@@ -24,7 +24,7 @@ export default function CursorPointShow({ clickCopy, style }: CursorPointShowPro
 
     // 缩放等级变更
     map.on('mousemove', function (event) {
-      console.log('mousemove', event)
+      // console.log('mousemove', event)
       setData(`${event.lngLat.lng}, ${event.lngLat.lat}`)
     })
     map.on('click', function (event) {
