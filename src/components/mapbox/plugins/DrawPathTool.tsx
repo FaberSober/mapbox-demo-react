@@ -117,8 +117,7 @@ export default function DrawPathTool({ options, onChange, onReady, delta = 5 }: 
 
     // debounce update point circle
     const mouseMoveDebounce:any = debounce((lng, lat) => {
-      console.log('endMouseMove', draw.getAll(), draw.getSelectedIds());
-
+      // console.log('endMouseMove', draw.getAll(), draw.getSelectedIds());
       let allLines = draw.getAll().features;
       const selectedIds = draw.getSelectedIds()
       if (selectedIds.length > 0) {
@@ -144,7 +143,7 @@ export default function DrawPathTool({ options, onChange, onReady, delta = 5 }: 
     map.on('mousemove', mousemove)
 
     const mouseclick = function (event: MapMouseEvent) {
-      // console.log('click', event, closestPointFlag, draw.getMode())
+      console.log('click', closestPointFlag, draw.getMode())
       if (closestPointFlag) {
         // 判断draw的当前行为
         switch (draw.getMode()) {
@@ -165,19 +164,34 @@ export default function DrawPathTool({ options, onChange, onReady, delta = 5 }: 
     map.on('click', mouseclick)
 
     const mouseup = function (event: MapMouseEvent) {
-      console.log('mouseup', event, closestPointFlag, draw.getMode(), draw.getSelectedPoints(), draw.getSelected())
-      if (closestPointFlag && draw.getMode() === 'direct_select' && draw.getSelectedPoints().features.length > 0) {
-        // 修改移动的点到选中的最近点
-        const movePoint = draw.getSelectedPoints().features[0].geometry.coordinates;
-        const features = draw.getSelected().features.map((f) => {
-          f.geometry.coordinates = f.geometry.coordinates.map(coord => {
-            if (coord[0] === movePoint[0] && coord[1] === movePoint[1]) {
-              return closestPointFlag;
-            }
-            return coord;
-          })
-          draw.add(f)
-        })
+      // console.log('mouseup', event, closestPointFlag, draw.getMode(), draw.getAll())
+      if (closestPointFlag === undefined) return;
+      switch (draw.getMode()) {
+        case 'direct_select': {
+          if (draw.getSelectedPoints().features.length > 0) {
+            // 修改移动的点到选中的最近点
+            const movePoint = draw.getSelectedPoints().features[0].geometry.coordinates;
+            draw.getSelected().features.map((f) => {
+              f.geometry.coordinates = f.geometry.coordinates.map(coord => {
+                if (coord[0] === movePoint[0] && coord[1] === movePoint[1]) {
+                  return closestPointFlag;
+                }
+                return coord;
+              })
+              draw.add(f)
+            })
+          }
+        } break;
+        case 'draw_line_string': {
+          // FIXME 这里是bug，功能尚未实现
+          // 1. 绘制line；2. 在找到最近点时抬起鼠标
+          // 1. 将最后一个点修改为最近点坐标；2. 结束绘制
+          const curFeature = draw.getAll().features[draw.getAll().features.length - 1]
+          curFeature.geometry.coordinates[curFeature.geometry.coordinates.length - 1] = closestPointFlag
+          console.log(curFeature)
+          draw.add(curFeature)
+          // draw.changeMode('simple_select')
+        } break;
       }
     }
     map.on('mouseup', mouseup)
