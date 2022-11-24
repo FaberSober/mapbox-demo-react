@@ -47,11 +47,9 @@ function findClosestPoint(allLines: Feature[], mousePoint: [number, number], del
   return { minDis, closestPoint }
 }
 
-type eventType = 'draw.create'|'draw.update'|'draw.delete'
-
 export interface DrawPathToolProps {
   options?: MapboxDraw.MapboxDrawOptions;
-  onChange?: (et: eventType, selected: FeatureCollection, all: FeatureCollection) => void;
+  onChange?: (e: any, all: FeatureCollection) => void;
   onReady?: (draw: MapboxDraw) => void;
   delta?: number; // distance of points less then delta, will draw as the same point(unit: meters)
 }
@@ -90,9 +88,9 @@ export default function DrawPathTool({ options, onChange, onReady, delta = 5 }: 
     function updateArea(e) {
       const selected = draw.getSelected();
       const data = draw.getAll();
-      // console.log('updateArea', e, selected, data)
+      console.log('updateArea', e, selected, data)
       if (onChange) {
-        onChange(e.type, selected, data)
+        onChange(e, data)
       }
     }
 
